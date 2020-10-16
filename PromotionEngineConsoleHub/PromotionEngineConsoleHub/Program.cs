@@ -20,6 +20,7 @@ namespace PromotionEngineConsoleHub
             Console.WriteLine("===================================================");
             writer.WriteConsole("Promotion Engine", artSettings);
             Console.WriteLine("===================================================");
+            Console.WriteLine("Please prov");
             Console.ReadLine();
             return 0;
         }
