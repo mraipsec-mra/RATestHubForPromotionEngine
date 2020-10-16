@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using TextToAsciiArt;
 
 namespace PromotionEngineConsoleHub
@@ -20,7 +21,9 @@ namespace PromotionEngineConsoleHub
             Console.WriteLine("===================================================");
             writer.WriteConsole("Promotion Engine", artSettings);
             Console.WriteLine("===================================================");
-            Console.WriteLine("Please prov");
+            
+            Console.WriteLine("Please add products to basket");
+
             Console.ReadLine();
             return 0;
         }
