@@ -3,22 +3,43 @@ using TextToAsciiArt;
 
 namespace PromotionEngineConsoleHub
 {
+    /// <summary>
+    /// Main Program
+    /// </summary>
     class Program
     {
-        static int Main(string[] args)
+        /// <summary>
+        /// Main Method
+        /// </summary>
+        /// <returns>An Integer</returns>
+        static int Main()
         {
-            IArtWriter writer = new ArtWriter();
-            var artSettings = new ArtSetting
+            IArtWriter writer;
+            ArtSetting artSettings;
+            PrintInAscii(out writer, out artSettings);
+            Console.WriteLine("===================================================");
+            writer.WriteConsole("Promotion Engine", artSettings);
+            Console.WriteLine("===================================================");
+            Console.ReadLine();
+            return 0;
+        }
+
+        /// <summary>
+        /// Print In Ascii Text
+        /// </summary>
+        /// <param name="writer">IWriter</param>
+        /// <param name="artSettings">Art Settings</param>
+        private static void PrintInAscii(out IArtWriter writer, out ArtSetting artSettings)
+        {
+            writer = new ArtWriter();
+            artSettings = new ArtSetting
             {
                 ConsoleSpeed = 90,
                 IsBreakSpace = true,
-                SpaceWidth = 3,
+                SpaceWidth = 1,
                 Text = "|",
                 BgText = " "
             };
-            writer.WriteConsole("Promotion Engine", artSettings);
-            Console.ReadLine();
-            return 0;
         }
     }
 }
