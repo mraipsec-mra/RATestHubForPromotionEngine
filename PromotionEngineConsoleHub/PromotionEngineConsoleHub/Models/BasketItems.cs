@@ -1,5 +1,8 @@
 ﻿namespace PromotionEngineConsoleHub.Models
 {
+    /// <summary>
+    /// Basket Items
+    /// </summary>
     public class BasketItems
     {
         /// <summary>
