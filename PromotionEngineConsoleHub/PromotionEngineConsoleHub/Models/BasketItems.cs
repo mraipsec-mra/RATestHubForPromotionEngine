@@ -13,7 +13,7 @@
         /// <summary>
         /// Product Quantity
         /// </summary>
-        public string Quantity { get; set; }
+        public double Quantity { get; set; }
 
         /// <summary>
         /// Product Price
