@@ -22,7 +22,7 @@ namespace PromotionEngineConsoleHub
             writer.WriteConsole("Promotion Engine", artSettings);
             Console.WriteLine("===================================================");
             
-            Console.WriteLine("Please add products to basket");
+           // Console.WriteLine("Please add products to basket");
 
             Console.ReadLine();
             return 0;

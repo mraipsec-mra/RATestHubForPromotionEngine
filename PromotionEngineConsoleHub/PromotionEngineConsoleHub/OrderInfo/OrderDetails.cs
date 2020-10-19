@@ -58,11 +58,39 @@ namespace PromotionEngineConsoleHub.OrderInfo
         /// </summary>
         /// <param name="items">basket items</param>
         /// <returns>Promotion Details</returns>
-        public ValueTuple<Promotion, bool> GetApplicablePromotion2OnOrder(List<BasketItems> items)
+        public ValueTuple<Promotion, bool, List<BasketItems>> GetApplicablePromotion2OnOrder(List<BasketItems> items)
         {
-            var promotionDetails = new ValueTuple<Promotion, bool>();
-            promotionDetails.Item1 = new Promotion() { PromotionID = "AP2", PrintText = "Promotion 2" };
-            promotionDetails.Item2 = true;
+            var promotionDetails = new ValueTuple<Promotion, bool, List<BasketItems>>();
+            var modifiedItems = new List<BasketItems>();
+
+            if (items != null && items.Count > 0)
+            {
+                var selectedItemCCount = items.Where(p => p.ProductID == "C").Count();
+                var selectedItemDCount = items.Where(p => p.ProductID == "D").Count();
+                if (selectedItemCCount > 0 && selectedItemDCount > 0)
+                {
+                    if (selectedItemCCount == selectedItemDCount)
+                    {
+                        modifiedItems.Add(new BasketItems() { ProductID = "C", Price = 0.00, Quantity = selectedItemCCount });
+                        modifiedItems.Add(new BasketItems() { ProductID = "D", Price = 30.00, Quantity = selectedItemDCount });
+                    }
+                    else if(selectedItemCCount < selectedItemDCount)
+                    {
+                        modifiedItems.Add(new BasketItems() { ProductID = "C", Price = 0.00, Quantity = selectedItemCCount });
+                        modifiedItems.Add(new BasketItems() { ProductID = "D", Price = 30.00 * selectedItemCCount, Quantity = selectedItemCCount });
+                        modifiedItems.Add(new BasketItems() { ProductID = "D", Price = 15.00, Quantity = selectedItemDCount - selectedItemCCount });
+                    }
+                    else if(selectedItemCCount > selectedItemDCount)
+                    {
+                        modifiedItems.Add(new BasketItems() { ProductID = "C", Price = 0.00, Quantity =  selectedItemDCount });
+                        modifiedItems.Add(new BasketItems() { ProductID = "D", Price = 30.00 * selectedItemDCount, Quantity = selectedItemDCount });
+                        modifiedItems.Add(new BasketItems() { ProductID = "C", Price = 20.00, Quantity = selectedItemCCount - selectedItemDCount });
+                    }
+                    promotionDetails.Item1 = new Promotion() { PromotionID = "AP2", PrintText = "Promotion 2" };
+                    promotionDetails.Item2 = true;
+                    promotionDetails.Item3 = modifiedItems;
+                }
+            }
             return promotionDetails;
         }
 
