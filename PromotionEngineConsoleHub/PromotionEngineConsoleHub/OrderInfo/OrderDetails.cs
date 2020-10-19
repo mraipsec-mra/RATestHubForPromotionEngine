@@ -27,21 +27,22 @@ namespace PromotionEngineConsoleHub.OrderInfo
 
                 foreach (var groupedItem in groupedItems)
                 {
-                    if (groupedItem.Key == "A")
+                    switch(groupedItem.Key)
                     {
-                        LogicForProductA(modifiedItems, groupedItem);
-                    }
-                    else if (groupedItem.Key == "B")
-                    {
-                        LogicForProductB(modifiedItems, groupedItem);
-                    }
-                    else if (groupedItem.Key == "C")
-                    {
-                        LogicForProductC(modifiedItems, groupedItem);
-                    }
-                    else if (groupedItem.Key == "D")
-                    {
-                        LogicForProductD(modifiedItems, groupedItem);
+                        case "A":
+                            LogicForProductA(modifiedItems, groupedItem);
+                            break;
+                        case "B":
+                            LogicForProductB(modifiedItems, groupedItem);
+                            break;
+                        case "C":
+                            LogicForProductC(modifiedItems, groupedItem);
+                            break;
+                        case "D":
+                            LogicForProductD(modifiedItems, groupedItem);
+                            break;
+                        default:
+                            return promotionDetails;
                     }
                 }
 
